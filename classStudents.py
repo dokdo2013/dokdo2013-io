@@ -1,6 +1,6 @@
 # HAENU API - 과목번호와 분반 입력시 총인원과 현재인원 반환
 # Endpoint URL : https://api.haenu.com/cuk/classStudents (지원 중단)
-# 41번째 줄에 트리니티 ID, PW 입력해야 함.
+# 39번째 줄에 트리니티 ID, PW 입력해야 함.
 
 # ====================================== #
 #            CUK.HAENU.COM               #
