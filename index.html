@@ -61,9 +61,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#classStudents">수강신청 인원 조회</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#classAll">강의정보 전체 조회</a>
-                    </li>
                 </ul>
                 <hr class="d-sm-none">
             </div>
@@ -123,6 +120,19 @@
                                             <td>분반번호(1~2자)</td>
                                             <td>Y</td>
                                         </tr>
+                                        <tr>
+                                            <td>userId</td>
+                                            <td>String</td>
+                                            <td>트리니티 아이디</td>
+                                            <td>Y</td>
+                                        </tr>
+                                        <tr>
+                                            <td>subjNo</td>
+                                            <td>String</td>
+                                            <td>트리니티 </td>
+                                            <td>Y</td>
+                                        </tr>
+
                                     </table>
                                 </td>
                             </tr>
@@ -193,78 +203,10 @@
                             <tr>
                                 <td>설명</td>
                                 <td>특정 강의의 현재 신청 인원, 최대 신청 인원 수를 실시간으로 조회해 반환합니다. 데이터 조회 전 트리니티 인증 과정으로 인해 호출시간이 1초 가량으로
-                                    긴 점 양해 바랍니다.</td>
+                                    긴 점 양해 바랍니다.<br>개인 트리니티 계정은 저장되지 않고 조회 당시에만 사용 후 폐기됩니다.</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-
-                <div id="classAll" class="apidescPart">
-                    <h2>강의정보 전체 조회 API</h2>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>분류</th>
-                                <th>정보</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td scope="row">링크</td>
-                                <td>https://api.haenu.com/cuk/classAll</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">메서드</td>
-                                <td>GET</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">리턴타입</td>
-                                <td>JSON</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">인증</td>
-                                <td>N (키 없이 접속 가능)</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">CORS 지원여부</td>
-                                <td>Y (지원)</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">파라미터 (요청변수)</td>
-                                <td>없음</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">에러코드</td>
-                                <td>
-                                    <table>
-                                        <tr>
-                                            <th>코드</th>
-                                            <th>에러메시지</th>
-                                            <th>설명</th>
-                                            <th>대응방안</th>
-                                        </tr>
-                                        <tr>
-                                            <td>20</td>
-                                            <td>트리니티 정보 조회에 실패하였습니다.</td>
-                                            <td>트리니티 로그인 과정에 오류가 발생하였습니다.</td>
-                                            <td>인증 절차에 오류가 발생한 것으로 깃허브에 이슈를 등록해주시면 최대한 빠르게 조치 취하겠습니다.</td>
-                                        </tr>
-                                        <tr>
-                                            <td>21</td>
-                                            <td>트리니티 정보 조회에 실패하였습니다.</td>
-                                            <td>조회 과정에 오류가 발생하였습니다.</td>
-                                            <td>조회 과정에 오류가 발생한 것으로 깃허브에 이슈를 등록해주시면 최대한 빠르게 조치 취하겠습니다.</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>설명</td>
-                                <td>전체 강의 정보를 담은 json 파일을 통째로 받아옵니다. 넘어온 값을 자유자재로 분석해서 활용할 수 있습니다.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-            
                 </div>
 
             </div>
