@@ -1,6 +1,5 @@
 # HAENU API - 과목번호와 분반 입력시 총인원과 현재인원 반환
-# Endpoint URL : https://api.haenu.com/cuk/classStudents (지원 중단)
-# 39번째 줄에 트리니티 ID, PW 입력해야 함.
+# Endpoint URL : https://api.haenu.com/cuk/classStudents
 
 # ====================================== #
 #            CUK.HAENU.COM               #
@@ -8,7 +7,9 @@
 #  Date : 2020.08.13.                    #
 #  Last Date : 2020.12.29.               #
 # ====================================== #
-
+# ====================================== #
+#          (1) 파이썬 기본 세팅          #
+# ====================================== #
 from bs4 import BeautifulSoup
 import time
 import requests
@@ -20,7 +21,7 @@ class catlog():
         self.session = ''
         self.req_login = ''
 
-    def login(self):
+    def login(self, userId, userPassword):
         sessid_1 = str(uuid.uuid4())
         sessid_2 = str(uuid.uuid4())
 
@@ -36,7 +37,7 @@ class catlog():
         soup = BeautifulSoup(html, 'html.parser')
         samlRequest = soup.find('input', {'name': 'samlRequest'}).get('value')
 
-        data1 = {'userId': 'userid', 'password': 'password', 'samlRequest': samlRequest}
+        data1 = {'userId': userId, 'password': userPassword, 'samlRequest': samlRequest}
 
         req = requests.post('https://uportal.catholic.ac.kr/sso/processAuthnResponse.do', headers=headers,
                             cookies=cookies, data=data1)
@@ -128,6 +129,8 @@ def lambda_handler(event, context):
     try:
         subj = parameters["subjNo"]
         no = parameters["classNo"]
+        userId = parameters["userId"]
+        userPw = parameters["userPw"]
     except:
         errMsg = {
             "errCode": 11,
@@ -143,7 +146,7 @@ def lambda_handler(event, context):
 
     try:
         catApi = catlog()
-        catApi.login()
+        catApi.login(userId,userPw)
     except:
         errMsg = {
             "errCode": 20,
