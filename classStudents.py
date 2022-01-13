@@ -1,15 +1,12 @@
 # HAENU API - 과목번호와 분반 입력시 총인원과 현재인원 반환
-# Endpoint URL : https://api.haenu.com/cuk/classStudents
 
 # ====================================== #
 #            CUK.HAENU.COM               #
 #  Developer : HAENU & CY7               #
 #  Date : 2020.08.13.                    #
-#  Last Date : 2020.12.29.               #
+#  Last Date : 2022.01.14.               #
 # ====================================== #
-# ====================================== #
-#          (1) 파이썬 기본 세팅          #
-# ====================================== #
+
 from bs4 import BeautifulSoup
 import time
 import requests
@@ -65,7 +62,7 @@ class catlog():
         except:
             return 'Error', 'Error', 'Error'
 
-    def get_json(self):
+    def get_json(self, year, semester):
         html = self.req_login.text
         soup = BeautifulSoup(html, 'html.parser')
         csrf = soup.find('meta', {'id': '_csrf'}).get('content')
@@ -80,7 +77,7 @@ class catlog():
                    'Referer': 'https://uportal.catholic.ac.kr/stw/scsr/scoo/scooOpsbOpenSubjectInq.do'
                    }
 
-        data = {'quatFg': 'INQ', 'posiFg': '10', 'openYyyy': '2021', 'openShtm': '10', 'campFg': 'M', 'sustCd': '%',
+        data = {'quatFg': 'INQ', 'posiFg': semester, 'openYyyy': year, 'openShtm': semester, 'campFg': 'M', 'sustCd': '%',
                 'corsCd': '|', 'danFg': '', 'pobtFgCd': '%'}
 
         cookies = {'UCUPS_PT_SESSION': self.session.cookies.get_dict()['UCUPS_PT_SESSION']}
@@ -131,6 +128,8 @@ def lambda_handler(event, context):
         no = parameters["classNo"]
         userId = parameters["userId"]
         userPw = parameters["userPw"]
+        year = parameters["year"]
+        semester = parameters["semester"]
     except:
         errMsg = {
             "errCode": 11,
@@ -161,7 +160,7 @@ def lambda_handler(event, context):
         }
 
     try:
-        jsonData = catApi.get_json()
+        jsonData = catApi.get_json(year, semester)
         now, limit, className = catApi.find(subj, no, jsonData)
         resMsg = {
             "totalNum": limit,
