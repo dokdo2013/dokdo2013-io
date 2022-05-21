@@ -1,7 +1,7 @@
-# haenu-api
+# haenu-api (서비스 종료)
 가톨릭대학교 트리니티 정보 API Documents
 
-- classStudents.py : 강의번호와 분반번호로 호출시 현재인원, 남은인원 확인 (제한적 지원 중 - 현재 작동합니다.)
+- classStudents.py : 강의번호와 분반번호로 호출시 현재인원, 남은인원 확인
 - API Endpoint : https://49oxwvvi8h.execute-api.ap-northeast-2.amazonaws.com/default/classStudents (2022.01.13 기준)
 
 ## 참고사항
